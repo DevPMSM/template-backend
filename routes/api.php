@@ -25,5 +25,3 @@ Route::middleware(['auth:sanctum', 'can:admin'])->group(function(){
     Route::apiResource('/users',UserController::class)->except(['update', 'show']);
     Route::delete('/users/hard-delete/{user}', [UserController::class, 'hardDelete']);
 });
-
-
