@@ -272,7 +272,7 @@ class UserController extends Controller
     /**
     * @OA\Delete(
     *      path="/api/users/{user}",
-    *      summary="Excluir usuário",
+    *      summary="Excluir usuário logicamente",
     *      description="Exclui um usuário de forma lógica",
     *      tags={"Usuários"},
     *      security={{"bearerAuth": {}}},
@@ -304,7 +304,7 @@ class UserController extends Controller
     /**
     * @OA\Delete(
     *      path="/api/users/hard-delete/{user}",
-    *      summary="Excluir usuário",
+    *      summary="Excluir usuário físicamente",
     *      description="Exclui um usuário de forma física",
     *      tags={"Usuários"},
     *      security={{"bearerAuth": {}}},

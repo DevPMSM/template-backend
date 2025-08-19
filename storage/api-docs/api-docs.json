@@ -6,6 +6,132 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Login/Logout"
+                ],
+                "summary": "Login",
+                "description": "Endpoints para autenticação e login.",
+                "operationId": "4eb8dfe5f244a89d82f4935fb4c263cb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+                                        },
+                                        "token_type": {
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "example": "7200"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Credenciais inválidas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Login/Logout"
+                ],
+                "summary": "Logout",
+                "description": "Endpoints para autenticação e login.",
+                "operationId": "23d08de70179b5eded9fe5b389277665",
+                "responses": {
+                    "200": {
+                        "description": "Logout realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logout realizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -394,7 +520,7 @@
                 "tags": [
                     "Usuários"
                 ],
-                "summary": "Excluir usuário",
+                "summary": "Excluir usuário logicamente",
                 "description": "Exclui um usuário de forma lógica",
                 "operationId": "e0f9a385a1d6788b99e519bd98cf7239",
                 "parameters": [
@@ -425,7 +551,7 @@
                 "tags": [
                     "Usuários"
                 ],
-                "summary": "Excluir usuário",
+                "summary": "Excluir usuário físicamente",
                 "description": "Exclui um usuário de forma física",
                 "operationId": "1b1e07ee4bcf8f5681f0448222a560f4",
                 "parameters": [
@@ -547,6 +673,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Login/Logout",
+            "description": "Operações de autenticação"
+        },
         {
             "name": "Usuários",
             "description": "Operações com usuários (ADMIN)"

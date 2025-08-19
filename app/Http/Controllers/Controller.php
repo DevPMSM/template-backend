@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
  *      PARA UTILIZAR AS ROTAS COMECE FAZENDO LOGIN",
  * ),
  * @OA\Tag(
- *      name="Entrar/Sair",
+ *      name="Login/Logout",
  *      description="Operações de autenticação",
  *  ),
  * @OA\Tag(
