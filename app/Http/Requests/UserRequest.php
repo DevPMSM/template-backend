@@ -44,7 +44,8 @@ class UserRequest extends FormRequest
             $postRules = [
                 'name' => ['required'],
                 'email' => ['required'],
-                'password' => ['required', 'confirmed'],
+                'password' => ['required'],
+                'role' => ['required']
             ];
         }
 

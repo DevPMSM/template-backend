@@ -26,7 +26,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'image'
+        'image',
+        'role',
+        'last_updated_by'
     ];
 
 
@@ -84,5 +86,10 @@ class User extends Authenticatable
         $this->two_factor_code = rand(100000, 999999);
         $this->two_factor_expires_at = now()->addMinutes(10);
         $this->save();
+    }
+
+    public function updatedExamples()
+    {
+        return $this->hasMany(ExampleCRUD::class, 'last_updated_by', 'id');
     }
 }

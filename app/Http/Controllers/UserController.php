@@ -139,6 +139,7 @@ class UserController extends Controller
             $path = $request->file('image')->store('image', 'public');
             $data['image'] = url('storage/'.$path);
         }
+
         $user = $this->user->create($data);
         return response()->json(['message' => 'Usuário criado com sucesso', 'user' => $user], Response::HTTP_CREATED);
     }
@@ -245,6 +246,10 @@ class UserController extends Controller
 
         if (Auth::user()->role !== 'admin' && $loggedUser['email'] !== $user['email']) {
             return response()->json(['error' => 'Acesso não autorizado'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        if ($loggedUser->role !== 'admin') {
+            unset($data['role']);
         }
 
         if (isset($data['password'])) {
