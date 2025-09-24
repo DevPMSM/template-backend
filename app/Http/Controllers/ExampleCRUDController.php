@@ -47,7 +47,9 @@ class ExampleCRUDController extends Controller
     */
     public function show(ExampleCRUD $exampleCRUD): JsonResponse
     {
-        $exampleCRUD = $this->exampleCRUD->findOrFail($exampleCRUD->id)->with('updatedBy')->get();
+        $exampleCRUD = $this->exampleCRUD->findOrFail($exampleCRUD->id);
+        $exampleCRUD->load('updatedBy');
+
         return response()->json($exampleCRUD, Response::HTTP_OK);
     }
 
