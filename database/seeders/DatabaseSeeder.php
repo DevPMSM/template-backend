@@ -20,9 +20,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'role' => 'admin'
         ]);
-
-        $this->call([
-            ExampleCRUDSeeder::class
-        ]);
     }
 }
