@@ -1,61 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Projeto Laravel API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um projeto desenvolvido com **Laravel**, que utiliza **Laravel Breeze** para autenticação e **Swagger (OpenAPI)** para documentação da API.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **PHP** >= 8.2
+* **Laravel** >= 12
+* **Laravel Breeze** (Autenticação)
+* **Swagger / OpenAPI** (Documentação da API)
+* **MySQL** (Bando de Dados)
+* **Composer**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🔐 Autenticação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+A autenticação do projeto foi implementada utilizando **Laravel Breeze**, fornecendo:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* Registro de usuários
+* Login
+* Logout
+* Proteção de rotas autenticadas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Middleware
 
-## Laravel Sponsors
+As rotas protegidas utilizam o middleware:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```php
+->middleware('auth')
+```
 
-### Premium Partners
+Ou, no caso de API:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```php
+->middleware('auth:sanctum')
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📑 Documentação da API (Swagger)
 
-## Code of Conduct
+A API deve está documentada utilizando **Swagger (OpenAPI)**, facilitando a visualização e testes dos endpoints.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Acesso à Documentação
+Para gerar a página de documentação do Swagger utilize o seguinte comando no terminal:
+```
+php artisan l5-swagger:generate
+```
 
-## Security Vulnerabilities
+Após subir o projeto, e gerar a página de documentação a mesma pode ser acessada em:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+http://localhost:8000/api/documentation
+```
 
-## License
+### Exemplo de Anotação Swagger
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```php
+/**
+ * @OA\Get(
+ *   path="/api/users",
+ *   summary="Lista usuários",
+ *   tags={"Users"},
+ *   security={{"bearerAuth":{}}},
+ *   @OA\Response(
+ *     response=200,
+ *     description="Sucesso"
+ *   )
+ * )
+ */
+```
+ O arquivo UserContrller contém mais exemplo das anotações do Swagger.
+
+---
+
+## ⚙️ Instalação do Projeto
+
+### 1️⃣ Clonar o repositório
+
+```bash
+git clone <url-do-repositorio>
+cd nome-do-projeto
+```
+
+### 2️⃣ Instalar dependências
+
+```bash
+composer install
+```
+
+### 3️⃣ Configurar o ambiente
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Configure o banco de dados no arquivo `.env`.
+
+### 4️⃣ Rodar as migrations
+
+```bash
+php artisan migrate
+```
+
+### 5️⃣ Iniciar o servidor
+
+```bash
+php artisan serve
+```
+
+---
+
+## 📌 Boas Práticas Utilizadas
+
+* Separação de responsabilidades (Controllers, Requests, Resources)
+* Validação de dados via Form Requests
+* Autenticação baseada em middleware
+* Documentação padronizada com OpenAPI
+
+---
+
+## 🧠 Observações
+
+* Certifique-se de que o Swagger está corretamente configurado antes de acessar a documentação.
+* Caso utilize autenticação via **Bearer Token**, informe o token no Swagger.
+
+---
+
