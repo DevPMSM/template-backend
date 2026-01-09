@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API VACINES",
-        "description": " API SISTEMAS VACINAÇÃO\n *      Documentação da API para facilitar acessos e testes no Sistema de Vacinas\n *      Feito pelo setor de TI da Prefeitura de São Mateus.\n *      PARA UTILIZAR AS ROTAS COMECE FAZENDO LOGIN",
+        "title": "(INSIRA NOME DA API)",
+        "description": "Documentação da API para facilitar acessos e testes no (INSIRA O NOME DA API).\n * Feito pelo setor de TI da Prefeitura de São Mateus.\n * PARA UTILIZAR AS ROTAS, COMECE FAZENDO LOGIN.",
         "version": "1.0.0"
     },
     "paths": {
