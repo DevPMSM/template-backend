@@ -300,7 +300,7 @@ class UserController extends Controller
         if ($loggedUser->email === $user->email) {
             return response()->json(['message' => 'Usuários não podem se auto-deletar.'], Response::HTTP_FORBIDDEN);
         }
-
+        $user->delete();
         $user->delete();
 
         return response()->json(['message' => 'Usuário deletado com sucesso'], Response::HTTP_OK);
