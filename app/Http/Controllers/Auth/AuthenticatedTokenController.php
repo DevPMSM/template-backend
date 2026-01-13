@@ -106,6 +106,6 @@ class AuthenticatedTokenController extends Controller
             $user->tokens()->delete(); // Revoga todos os tokens do usuário
         }
 
-        return response()->json(['message' => 'Logout realizado'], Response::HTTP_OK);
+        return response()->json(['message' => 'success'], Response::HTTP_OK);
     }
 }
