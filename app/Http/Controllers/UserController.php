@@ -308,7 +308,7 @@ class UserController extends Controller
 
     /**
     * @OA\Delete(
-    *      path="/api/users/hard-delete/{user}",
+    *      path="/api/users/{user}/hard-delete",
     *      summary="Excluir usuário físicamente",
     *      description="Exclui um usuário de forma física",
     *      tags={"Usuários"},

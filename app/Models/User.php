@@ -17,6 +17,10 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens, SoftDeletes, HasUuids;
 
+
+    public const ADMIN = "admin";
+    public const USER = "user";
+
     /**
     * The attributes that are mass assignable.
     *
@@ -42,7 +46,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
+    public static function getRoles(): array
+    {
+        return [
+            self::ADMIN,
+            self::USER
+        ];
+    }
+
+    /** 
     * Get the attributes that should be cast.
     *
     * @return array<string, string>
