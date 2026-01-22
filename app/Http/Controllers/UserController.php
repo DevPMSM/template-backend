@@ -141,7 +141,7 @@ class UserController extends Controller
         }
 
         $user = $this->user->create($data);
-        return response()->json(['message' => 'Usuário criado com sucesso', 'user' => $user], Response::HTTP_CREATED);
+        return response()->json($user, Response::HTTP_CREATED);
     }
 
     /**
@@ -271,7 +271,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return response()->json(['message' => 'Usuário atualizado com sucesso', 'user' => $user], Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**
@@ -303,7 +303,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json(['message' => 'Usuário deletado com sucesso'], Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**
@@ -352,6 +352,6 @@ class UserController extends Controller
 
         $user->forceDelete();
 
-        return response()->json([$user], Response::HTTP_OK);
+        return response()->json([], Response::HTTP_OK);
     }
 }
