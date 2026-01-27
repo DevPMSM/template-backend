@@ -34,7 +34,7 @@ class UserRequest extends FormRequest
                 ->letters()
                 ->mixedCase()
                 ->numbers()
-                ->symbols(),
+                ->symbols()
             ],
             'role' => ['in:admin,user'],
             'image' => ['image', 'mimes:jpeg,png,jpg,webp'],

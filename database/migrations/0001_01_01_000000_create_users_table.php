@@ -23,7 +23,6 @@ return new class extends Migration
             $table->uuid('last_updated_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

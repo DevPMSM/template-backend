@@ -277,8 +277,8 @@ class UserController extends Controller
     /**
     * @OA\Delete(
     *      path="/api/users/{user}",
-    *      summary="Excluir usuário logicamente",
-    *      description="Exclui um usuário de forma lógica",
+    *      summary="Excluir usuário",
+    *      description="Exclui um usuário do banco de dados",
     *      tags={"Usuários"},
     *      security={{"bearerAuth": {}}},
     *      @OA\Parameter(
@@ -304,54 +304,5 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json($user, Response::HTTP_OK);
-    }
-
-    /**
-    * @OA\Delete(
-    *      path="/api/users/{user}/hard-delete",
-    *      summary="Excluir usuário físicamente",
-    *      description="Exclui um usuário de forma física",
-    *      tags={"Usuários"},
-    *      security={{"bearerAuth": {}}},
-    *      @OA\Parameter(
-    *          name="user",
-    *          in="path",
-    *          required=true,
-    *          @OA\Schema(type="string", format="uuid")
-    *      ),
-    *      @OA\Response(
-    *          response=200,
-    *          description="Usuário removido com sucesso",
-    *            @OA\JsonContent(
-    *               type="array",
-    *               @OA\Items(
-    *                     type="object",
-    *                     @OA\Property(property="id", type="string"),
-    *                     @OA\Property(property="name", type="string"),
-    *                     @OA\Property(property="email", type="string"),
-    *                     @OA\Property(property="role", type="string"),
-    *                     @OA\Property(property="email_verified_at", type="string"),
-    *                     @OA\Property(property="image", type="string"),
-    *                     @OA\Property(property="last_updated_by", type="string"),
-    *                     @OA\Property(property="created_at", type="string"),
-    *                     @OA\Property(property="updated_at", type="string"),
-    *                     @OA\Property(property="deleted_at", type="string"),
-    *              ),
-    *          )
-    *      )
-    *  )
-    */
-    public function hardDelete(String $id): JsonResponse
-    {
-        $loggedUser = auth()->user();
-        $user = $this->user->withTrashed()->findOrFail($id);
-
-        if ($loggedUser['email'] === $user->email) {
-            return response()->json(['message' => 'Usuários não podem se auto-deletar.'], Response::HTTP_FORBIDDEN);
-        }
-
-        $user->forceDelete();
-
-        return response()->json([], Response::HTTP_OK);
     }
 }

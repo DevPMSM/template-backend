@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens, SoftDeletes, HasUuids;
+    use HasFactory, Notifiable, HasApiTokens, HasUuids;
 
 
     public const ADMIN = "admin";
@@ -54,7 +54,7 @@ class User extends Authenticatable
         ];
     }
 
-    /** 
+    /**
     * Get the attributes that should be cast.
     *
     * @return array<string, string>
@@ -100,8 +100,4 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function updatedExamples()
-    {
-        return $this->hasMany(ExampleCRUD::class, 'last_updated_by', 'id');
-    }
 }
