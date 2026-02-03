@@ -20,3 +20,4 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::apiResource('/users', UserController::class);
     Route::delete('/users/{user}/hard-delete', [UserController::class, 'hardDelete']);
 });
+
