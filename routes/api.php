@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\AuthenticatedTokenController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Rotas de autenticações
@@ -18,6 +17,5 @@ Route::middleware(['auth:sanctum'])->group(function() {
     });
 
     Route::apiResource('/users', UserController::class);
-    Route::delete('/users/{user}/hard-delete', [UserController::class, 'hardDelete']);
 });
 

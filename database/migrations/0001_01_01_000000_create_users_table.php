@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('role', User::getRoles())->default(User::USER)->nullable();
+            $table->enum('role', User::getRoles())->default(User::USER);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('image')->nullable();
             $table->string('password');
