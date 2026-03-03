@@ -40,42 +40,6 @@ Ou, no caso de API:
 
 ---
 
-## 📑 Documentação da API (Swagger)
-
-A API deve está documentada utilizando **Swagger (OpenAPI)**, facilitando a visualização e testes dos endpoints.
-
-### Acesso à Documentação
-Para gerar a página de documentação do Swagger utilize o seguinte comando no terminal:
-```
-php artisan l5-swagger:generate
-```
-
-Após subir o projeto, e gerar a página de documentação a mesma pode ser acessada em:
-
-```
-http://localhost:8000/api/documentation
-```
-
-### Exemplo de Anotação Swagger
-
-```php
-/**
- * @OA\Get(
- *   path="/api/users",
- *   summary="Lista usuários",
- *   tags={"Users"},
- *   security={{"bearerAuth":{}}},
- *   @OA\Response(
- *     response=200,
- *     description="Sucesso"
- *   )
- * )
- */
-```
- O arquivo UserContrller contém mais exemplo das anotações do Swagger.
-
----
-
 ## ⚙️ Instalação do Projeto
 
 ### 1️⃣ Clonar o repositório
