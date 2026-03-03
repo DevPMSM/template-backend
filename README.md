@@ -83,7 +83,6 @@ php artisan serve
 * Separação de responsabilidades (Controllers, Requests, Resources)
 * Validação de dados via Form Requests
 * Autenticação baseada em middleware
-* Documentação padronizada com OpenAPI
 
 ---
 
