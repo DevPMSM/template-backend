@@ -25,12 +25,12 @@ class AuthenticatedTokenController extends Controller
 
         $user = Auth::user();
 
-        $token = $user->createToken('auth-token', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $user->createToken('auth-token', ['*'], now()->addDays(6))->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => 7200,
+            'expires_in' => 518400,
         ], Response::HTTP_OK);
     }
 
