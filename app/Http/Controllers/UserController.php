@@ -282,7 +282,7 @@ class UserController extends Controller
     *      tags={"Usuários"},
     *      security={{"bearerAuth": {}}},
     *      @OA\Parameter(
-    *          name="user",
+    *          name="user",d
     *          in="path",
     *          required=true,
     *          @OA\Schema(type="string", format="uuid")
