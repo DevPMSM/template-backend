@@ -1,0 +1,34 @@
+info:
+  name: GET_User
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/users"
+  auth:
+    type: bearer
+    token: "{{authToken}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const response = res.getBody();
+
+        // Verifica se a propriedade 'data' existe e se possui itens
+        if (response && response.data && response.data.length > 0) {
+            const firstUser = response.data[0];
+            
+            // Define a variável com o ID do primeiro item
+            bru.setVar('lastUserIdCreated', firstUser.id);
+            
+            // Caso queira guardar o e-mail também, como no script anterior:
+            bru.setVar('lastUserEmailCreated', firstUser.email);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,15 @@
+info:
+  name: Profile
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+  scripts:
+    - type: after-response
+      code: |-
+        const response = res.getBody();
+
+        if (res.getStatus() === 200) {
+          bru.setVar('authToken', response.access_token);
+        }

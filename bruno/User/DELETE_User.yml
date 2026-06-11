@@ -1,0 +1,19 @@
+info:
+  name: DELETE_User
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{base_url}}/users/{{lastUserIdCreated}}"
+  body:
+    type: multipart-form
+  auth:
+    type: bearer
+    token: "{{authToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

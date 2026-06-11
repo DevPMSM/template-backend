@@ -1,0 +1,33 @@
+info:
+  name: PUT_User
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{base_url}}/users/{{lastUserIdCreated}}?_method=PUT&name=Tavares"
+  params:
+    - name: _method
+      value: PUT
+      type: query
+    - name: name
+      value: Tavares
+      type: query
+  body:
+    type: multipart-form
+    data:
+      - name: _method
+        type: text
+        value: PUT
+      - name: name
+        type: text
+        value: Lucas
+  auth:
+    type: bearer
+    token: "{{authToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
