@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -100,6 +101,18 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->two_factor_code = rand(100000, 999999);
         $this->two_factor_expires_at = now()->addMinutes(10);
         $this->save();
+    }
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                if (filter_var($value, FILTER_VALIDATE_URL)) {
+                    return $value;
+                }
+                return $value ? asset($value) : null;
+            },
+        );
     }
 
 }
