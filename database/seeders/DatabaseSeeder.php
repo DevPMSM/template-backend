@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Secti',
             'email' => 'secti@gmail.com',
+            'contact' => env('SECTI_DEFAULT_CONTACT'),
             'role' => User::ADMIN,
-            'password' => env('ADMIN_DEFAULT_PASSWORD'),
+            'password' => env('SECTI_DEFAULT_PASSWORD'),
             'image' => '/images/logo-pref.png',
         ]);
     }
