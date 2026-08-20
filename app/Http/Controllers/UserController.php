@@ -65,10 +65,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = $this->user->query()
-        ->when($request->has('name'), fn ($query) => $query->orWhere('name', 'like', "%{$request['name']}%"))
-        ->when($request->has('email'), fn ($query) => $query->orWhere('email', 'like', "%{$request['email']}%"))
-        ->orderBy('created_at', 'desc')
-        ->paginate((int) $request->per_page);
+            ->when($request->filled('name'), fn ($query) => $query->where('name', 'like', "%{$request->name}%"))
+            ->when($request->filled('email'), fn ($query) => $query->where('email', 'like', "%{$request->email}%"))
+            ->when($request->filled('role'), fn ($query) => $query->where('role', $request->role))
+            ->orderBy('name', $request->input('sort', 'asc') === 'desc' ? 'desc' : 'asc')
+            ->paginate($request->input('per_page', 15));
 
         return response()->json($users, Response::HTTP_OK);
     }
